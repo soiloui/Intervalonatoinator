@@ -1,0 +1,144 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  padding-top: 50px;
+  font-family: sans-serif;
+  color: #ffffff;
+  background: #242424;
+}
+
+h1 {
+  margin-bottom: 2em;
+}
+h2 {
+  margin-bottom: 1em;
+}
+
+pre[class*="language-html"] {
+  margin-bottom: 1rem !important;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  font-size: 12px !important;
+}
+
+.token.operator {
+  background: unset !important;
+}
+
+[data-tabs] {
+  margin-top: 1em !important;
+}
+
+[data-tabs] a {
+  color: inherit;
+  background: unset !important;
+}
+
+.container {
+  display: flex;
+  gap: 50px;
+  width: fit-content;
+  height: fit-content;
+  /* border: 1px solid #000; */
+}
+
+.block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 20px;
+  width: 370px;
+  height: auto;
+  aspect-ratio: 1;
+
+  background: rgba(255, 255, 255, 0.1);
+  /* border: 2px solid #00000055; */
+  border-radius: 15px;
+
+  transition: 0.3s ease;
+}
+
+.block.active {
+  background: rgba(255, 255, 255, 0.2);
+  /* border: 2px solid #f0f; */
+  /* box-shadow: 2px 2px 15px 5px rgba(255, 255, 255, 0.25); */
+}
+
+.small {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  /* border: 2px solid #aaa; */
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.small.active {
+  flex-grow: 10;
+}
+
+.small img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.btns {
+  display: flex;
+  gap: 5px;
+  margin-top: 40px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 30px;
+
+  cursor: pointer;
+  user-select: none;
+  color: #222;
+  background: #fff;
+  border-radius: 0.2em;
+  border: 1px solid #000;
+}
+
+.block-index-nav {
+  display: flex;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.nav-item {
+  cursor: pointer;
+  width: 16px;
+  height: auto;
+  aspect-ratio: 1;
+  background: #000;
+}
+
+.nav-item.active {
+  background: #f00;
+}

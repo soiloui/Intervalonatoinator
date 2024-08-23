@@ -1,0 +1,110 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  padding-top: 50px;
+  font-family: sans-serif;
+  color: #ffffff;
+  background: #242424;
+}
+
+.container {
+  display: flex;
+  gap: 50px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 20px;
+  width: 370px;
+  height: auto;
+  aspect-ratio: 1;
+
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+
+  transition: 0.3s ease;
+}
+
+.block.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.small {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.small.active {
+  flex-grow: 10;
+}
+
+.small img {
+  position: absolute;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.btns {
+  display: flex;
+  gap: 5px;
+  margin-top: 40px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 30px;
+
+  cursor: pointer;
+  user-select: none;
+  color: #222;
+  background: #fff;
+  border-radius: 0.2em;
+  border: 1px solid #000;
+}
+
+.block-index-nav {
+  display: flex;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.nav-item {
+  cursor: pointer;
+  width: 16px;
+  height: auto;
+  aspect-ratio: 1;
+  background: #000;
+}
+
+.nav-item.active {
+  background: #f00;
+}

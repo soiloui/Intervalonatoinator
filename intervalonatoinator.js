@@ -118,6 +118,10 @@ export default function Intervalonatoinator(userSettings = {}) {
     indexNavOnHover: domModule.indexNavOnHover,
     activateOnItemHover: domModule.activateOnItemHover,
     activateOnItemClick: domModule.activateOnItemClick,
+    pauseOnHover: domModule.pauseOnHover,
+    pauseOnHoverOut: domModule.pauseOnHoverOut,
+    playOnHover: domModule.playOnHover,
+    playOnHoverOut: domModule.playOnHoverOut,
 
     // Hook Module
     addHook: hookModule.addHook,

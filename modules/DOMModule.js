@@ -183,6 +183,62 @@ export default function DOMModule(settings, context, modules) {
   }
   // INDEX NAVIGATION END
 
+  // Stops iteration on hover on selected elements
+  function pauseOnHover(selector) {
+    if (!document.querySelector(selector)) {
+      console.warn(`No element found for selector: ${selector}`);
+      return this;
+    }
+    if (!context.observers[selector]) {
+      context.observers[selector] = new Observer(selector);
+    }
+    context.observers[selector].subscribe("hover", (e) => {
+      if (e.hover) pause();
+    });
+  }
+
+  // Stops iteration on hover out on selected elements
+  function pauseOnHoverOut(selector) {
+    if (!document.querySelector(selector)) {
+      console.warn(`No element found for selector: ${selector}`);
+      return this;
+    }
+    if (!context.observers[selector]) {
+      context.observers[selector] = new Observer(selector);
+    }
+    context.observers[selector].subscribe("hover", (e) => {
+      if (!e.hover) pause();
+    });
+  }
+
+  // Plays iteration on hover on selected elements
+  function playOnHover(selector) {
+    if (!document.querySelector(selector)) {
+      console.warn(`No element found for selector: ${selector}`);
+      return this;
+    }
+    if (!context.observers[selector]) {
+      context.observers[selector] = new Observer(selector);
+    }
+    context.observers[selector].subscribe("hover", (e) => {
+      if (e.hover) play();
+    });
+  }
+
+  // Plays iteration on hover out on selected elements
+  function playOnHoverOut(selector) {
+    if (!document.querySelector(selector)) {
+      console.warn(`No element found for selector: ${selector}`);
+      return this;
+    }
+    if (!context.observers[selector]) {
+      context.observers[selector] = new Observer(selector);
+    }
+    context.observers[selector].subscribe("hover", (e) => {
+      if (!e.hover) play();
+    });
+  }
+
   // Registers global event listeners
   function registerEventListeners() {
     document.addEventListener("click", clickOnPlayElems);
@@ -204,37 +260,41 @@ export default function DOMModule(settings, context, modules) {
   // Handles clicks on navigation elements
   function clickOnNavElems(e) {
     if (!dom.selectors.indexNav.length) return;
-    const navParent = e.target.closest(dom.selectors.indexNav.join(","));
-    if (!navParent) return;
-    if (navParent === e.target) return;
+    const elem = e.target.closest(dom.selectors.indexNav.join(","));
+    if (!elem) return;
+    if (elem === e.target) return;
     jumpToIndex(e.target.dataset.index);
   }
 
   // Handles clicks on play elements
   function clickOnPlayElems(e) {
     if (!dom.selectors.play.length) return;
-    if (!e.target.matches(dom.selectors.play.join(","))) return;
+    const elem = e.target.closest(dom.selectors.play.join(","));
+    if (!elem) return;
     play();
   }
 
   // Handles clicks on pause elements
   function clickOnPauseElems(e) {
     if (!dom.selectors.pause.length) return;
-    if (!e.target.matches(dom.selectors.pause.join(","))) return;
+    const elem = e.target.closest(dom.selectors.pause.join(","));
+    if (!elem) return;
     pause();
   }
 
   // Handles clicks on previous elements
   function clickOnPrevElems(e) {
     if (!dom.selectors.prev.length) return;
-    if (!e.target.matches(dom.selectors.prev.join(","))) return;
+    const elem = e.target.closest(dom.selectors.prev.join(","));
+    if (!elem) return;
     prev();
   }
 
   // Handles clicks on next elements
   function clickOnNextElems(e) {
     if (!dom.selectors.next.length) return;
-    if (!e.target.matches(dom.selectors.next.join(","))) return;
+    const elem = e.target.closest(dom.selectors.next.join(","));
+    if (!elem) return;
     next();
   }
 
@@ -248,6 +308,10 @@ export default function DOMModule(settings, context, modules) {
     indexNavOnHover,
     activateOnItemHover,
     activateOnItemClick,
+    pauseOnHover,
+    pauseOnHoverOut,
+    playOnHover,
+    playOnHoverOut,
   };
 
   return { ...exposedFunctions };

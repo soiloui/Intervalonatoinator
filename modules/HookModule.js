@@ -1,4 +1,7 @@
 export default function HookModule() {
+  // Default priority for hooks
+  const defaultPriority = 10;
+
   // Define the available hooks with their respective names and functions
   const hooks = {
     beforeInit: { name: "beforeInit", functions: [] },
@@ -9,21 +12,25 @@ export default function HookModule() {
     onIndexChange: { name: "onIndexChange", functions: [] },
     onPlay: { name: "onPlay", functions: [] },
     onPause: { name: "onPause", functions: [] },
+    onPrev: { name: "onPrev", functions: [] },
+    onNext: { name: "onNext", functions: [] },
   };
 
   // Run all functions associated with a given hook
   function runHooks(hook) {
     if (!hook || !hook.functions) return;
-    hook.functions.forEach((fn) => fn());
+    hook.functions
+      .sort((a, b) => b.priority - a.priority) // Sort functions by priority, higher priority first
+      .forEach((hookObject) => hookObject.fn());
   }
 
   // Add a new function to a specific hook
-  function addHook(hookName, fn) {
+  function addHook(hookName, fn, priority = defaultPriority) {
     if (!hooks[hookName]) {
       console.warn(`Hook ${hookName} does not exist.`);
       return;
     }
-    hooks[hookName].functions.push(fn);
+    hooks[hookName].functions.push({ fn, priority });
     return this;
   }
 

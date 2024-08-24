@@ -20,6 +20,7 @@ export default function IterationModule(settings, context, modules) {
     if (context.currIndex > context.maxIndex) {
       context.currIndex = context.minIndex;
     }
+    hookModule.runHooks(hooks.onNext);
     hookModule.runHooks(hooks.onIndexChange);
     return this;
   }
@@ -31,6 +32,7 @@ export default function IterationModule(settings, context, modules) {
     if (context.currIndex < context.minIndex) {
       context.currIndex = context.maxIndex;
     }
+    hookModule.runHooks(hooks.onPrev);
     hookModule.runHooks(hooks.onIndexChange);
     return this;
   }

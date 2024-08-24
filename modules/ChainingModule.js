@@ -30,6 +30,7 @@ export default function ChainingModule() {
     return function (...args) {
       // Immediately execute critical functions to avoid delays
       if (
+        fnName === "init" ||
         fnName === "addHook" ||
         fnName === "removeHook" ||
         fnName === "setRelationTo" ||

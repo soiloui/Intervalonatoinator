@@ -40,7 +40,9 @@ export default function HookModule() {
       console.warn(`Hook ${hookName} does not exist.`);
       return;
     }
-    hooks[hookName].functions = hooks[hookName].functions.filter((f) => f !== func);
+    hooks[hookName].functions = hooks[hookName].functions.filter(
+      (hookObject) => hookObject.fn !== func
+    );
     return this;
   }
 

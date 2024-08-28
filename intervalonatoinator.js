@@ -42,6 +42,7 @@ export default function Intervalonatoinator(userSettings = {}) {
     currIndex: settings.range.from,
     prevIndex: settings.range.from,
     isPlaying: false,
+    lastDirection: "",
   };
 
   // Initialize all the necessary modules
@@ -76,6 +77,23 @@ export default function Intervalonatoinator(userSettings = {}) {
 
   function coreFunctionality() {
     incrementIndexOnIteration();
+    handleLastDirection();
+  }
+
+  // Handles updating last direction
+  function handleLastDirection() {
+    hookModule.addHook("onIndexChange", () => {
+      const { prevIndex, currIndex, minIndex, maxIndex } = context;
+      const isBigger = currIndex > prevIndex;
+      const isOnEdgeEnd = currIndex === maxIndex && prevIndex === minIndex;
+      const isOnEdgeStart = currIndex === minIndex && prevIndex === maxIndex;
+
+      if ((isBigger && !isOnEdgeEnd) || isOnEdgeStart) {
+        context.lastDirection = "next";
+      } else {
+        context.lastDirection = "prev";
+      }
+    });
   }
 
   // Handles index incrementation on each iteration

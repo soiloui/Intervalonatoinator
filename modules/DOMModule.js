@@ -86,7 +86,7 @@ export default function DOMModule(settings, context, modules) {
     }
 
     context.observers[itemsSelector].subscribe("hover", (e) => {
-      if (e.hover) jumpToIndex(e.node.dataset.index);
+      if (e.hover) jumpToIndex(Number(e.node.dataset.index));
     });
   }
 
@@ -99,7 +99,7 @@ export default function DOMModule(settings, context, modules) {
     }
 
     context.observers[itemsSelector].subscribe("click", (e) => {
-      jumpToIndex(e.node.dataset.index);
+      jumpToIndex(Number(e.node.dataset.index));
     });
   }
 
@@ -168,7 +168,7 @@ export default function DOMModule(settings, context, modules) {
       context.observers[`${selector}`].subscribe("hover", (e) => {
         const { hover, node } = e;
         if (!hover) return;
-        jumpToIndex(node.dataset.index);
+        jumpToIndex(Number(node.dataset.index));
       });
     });
   }
@@ -263,7 +263,7 @@ export default function DOMModule(settings, context, modules) {
     const elem = e.target.closest(dom.selectors.indexNav.join(","));
     if (!elem) return;
     if (elem === e.target) return;
-    jumpToIndex(e.target.dataset.index);
+    jumpToIndex(Number(e.target.dataset.index));
   }
 
   // Handles clicks on play elements

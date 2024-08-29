@@ -39,6 +39,7 @@ export default function IterationModule(settings, context, modules) {
 
   // Start the iteration process and trigger the play hook
   function play() {
+    if (context.isPauseForce) return this;
     runInterval();
     context.isPlaying = true;
     hookModule.runHooks(hooks.onPlay);
@@ -51,6 +52,15 @@ export default function IterationModule(settings, context, modules) {
     context.isPlaying = false;
     hookModule.runHooks(hooks.onPause);
     return this;
+  }
+
+  function pauseForce() {
+    context.isPauseForce = true;
+    pause();
+  }
+
+  function pauseForceOff() {
+    context.isPauseForce = false;
   }
 
   // Clear the existing interval to stop the iteration process
@@ -89,6 +99,8 @@ export default function IterationModule(settings, context, modules) {
     jumpToIndex,
     updateIntervalTime,
     removeInterval,
+    pauseForce,
+    pauseForceOff,
   };
 
   return { ...exposedFunctions };

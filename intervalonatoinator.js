@@ -42,6 +42,7 @@ export default function Intervalonatoinator(userSettings = {}) {
     currIndex: settings.range.from,
     prevIndex: settings.range.from,
     isPlaying: false,
+    isPauseForce: false,
     lastDirection: "",
   };
 
@@ -123,6 +124,8 @@ export default function Intervalonatoinator(userSettings = {}) {
     // Iteration Module
     play: iterationModule.play,
     pause: iterationModule.pause,
+    pauseForce: iterationModule.pauseForce,
+    pauseForceOff: iterationModule.pauseForceOff,
     next: iterationModule.next,
     prev: iterationModule.prev,
     jumpToIndex: iterationModule.jumpToIndex,

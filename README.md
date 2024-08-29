@@ -143,7 +143,3 @@ This project is licensed under the MIT License.
 ## Contact
 
 For questions or feedback, please contact [mieczyslaw.palian@gmail.com](mailto:mieczyslaw.palian@gmail.com).
-
----
-
-Feel free to adjust this README to better match the specifics of your project or to add any additional information you find relevant.
